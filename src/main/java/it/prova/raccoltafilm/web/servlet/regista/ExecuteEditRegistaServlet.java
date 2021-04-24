@@ -37,16 +37,7 @@ public class ExecuteEditRegistaServlet extends HttpServlet {
 		
 		if(!UtilityForm.validateRegistaBean(registaInstance)) {
 			
-			Regista registaTemp = new Regista();
-			registaTemp.setId(Long.parseLong(idParam));
-			registaTemp.setNome(nomeParam);
-			registaTemp.setCognome(cognomeParam);
-			registaTemp.setNickName(nickNameParam);
-			registaTemp.setSesso(Sesso.valueOf(sessoParam));
-			Date dataParsed = UtilityForm.parseDateArrivoFromString(dataDiNascitaParam);
-			registaTemp.setDataDiNascita(dataParsed);
-			
-			request.setAttribute("edit_regista_attribute", registaTemp);
+			request.setAttribute("edit_regista_attribute", registaInstance);
 			request.setAttribute("errorMessage", "Attenzione sono presenti errori di validazione");
 			request.getRequestDispatcher("/regista/edit.jsp").forward(request, response);
 			return;
